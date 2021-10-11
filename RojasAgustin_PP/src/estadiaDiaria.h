@@ -12,7 +12,7 @@
 #include "string.h"
 #include "funciones.h"
 #include "fecha.h"
-#define TAMDUENIO 35
+#define TAMDUENIO 20
 #define TAMTELEFONO 10
 #define TAMESTADIAS 100
 

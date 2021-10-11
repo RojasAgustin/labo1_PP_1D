@@ -23,9 +23,16 @@ int fecha_cargarDia(void){
 	int dia;
 	getString(diaCarga, "Dia: ", "Error. Reingrese el dia: ", 2);
 	while(!esNumerico(diaCarga, 2)){
-		printf("Error. Reingrese el dia.\n");
-		getString(diaCarga, "Dia: ", "Error. Reingrese el dia", 2);
+		getString(diaCarga, "Dia: ", "Error. Reingrese el dia: ", 2);
 	}
 	dia = atoi(diaCarga);
+	while(dia < 1 || dia > 31){
+		getString(diaCarga, "Error. Reingrese el dia: ", "Error. Reingrese el dia: ", 2);
+		while(!esNumerico(diaCarga, 2)){
+			printf("Error. Reingrese el dia.\n");
+			getString(diaCarga, "Error. Reingrese el dia: ", "Error. Reingrese el dia: ", 2);
+		}
+		dia = atoi(diaCarga);
+	}
 	return dia;
 }
