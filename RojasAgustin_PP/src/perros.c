@@ -6,20 +6,7 @@
  */
 
 #include "perros.h"
-/*
-void hardCodearPerros(sPerro perros[], int tamPerros){
-	int i;
-	int ids[3] = {7000,7001,7002};
-	char nombres[3][TAMNOMBRE] = {"Lobo","Sheila","Reina"};
-	char razas[3][TAMRAZA] = {"Sharpei","Golden","Galgo"};
-	int edades[3] = {2,12,13};
-	for(i =0;i < tamPerros;i++){
-		perros[i].id = ids[i];
-		strcpy(perros[i].nombre,nombres[i]);
-		strcpy(perros[i].raza,razas[i]);
-		perros[i].edad = edades[i];
-	}
-}*/
+
 int perro_mostrarPerros(sPerro perros[], int tamPerros){
 	int retorno =-1;
 	int i;
@@ -47,18 +34,22 @@ int perro_calcularPromedioDeEdadDeLosPerros(sPerro perros[],int tamPerros){
 			contadorPerros++;
 			sumaEdades += perros[i].edad;
 		}
-		promedio = sumaEdades / (float)contadorPerros;
-		printf("Promedio de edad de los perros: %.2f\n",promedio);
+		if(contadorPerros > 1) {
+			promedio = sumaEdades / (float)contadorPerros;
+			printf("Promedio de edad de los perros: %.2f\n",promedio);
+			retorno =0;
+		}
 	}
 	return retorno;
 }
 int perro_elegirPerro(){
 	int id;
 	int opcion;
-	opcion = getInteger("Elija un perro: \n"
+	opcion = getInteger("Mostrando lista de perros: \n"
 						"1.Lobo\n"
 						"2.Sheila\n"
-						"3.Reina\n", "Error.Reingresar.\n", 1, 3);
+						"3.Reina\n"
+						"Elija un perro: ", "Error.Reingresar.", 1, 3);
 	switch(opcion){
 		case 1:
 			id = 7000;

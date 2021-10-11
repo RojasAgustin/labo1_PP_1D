@@ -21,19 +21,6 @@ int getInteger(char* mensaje,char* mensajeError, int minimo,int maximo) {
 	}
 	return numero;
 }
-float getFloat(char* mensaje,char* mensajeError, float minimo,float maximo) {
-	float numero;
-	printf("%s", mensaje);
-	fflush(stdin);
-	scanf("%f", &numero);
-	while(numero < minimo || numero > maximo) {
-		printf("%s\n", mensajeError);
-		printf("%s", mensaje);
-		fflush(stdin);
-		scanf("%f", &numero);
-	}
-	return numero;
-}
 void getString(char* cadena, char* mensaje, char* mensajeError, int max)
 {
 	char cadenaSinValidar[100];

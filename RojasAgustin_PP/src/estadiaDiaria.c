@@ -109,7 +109,7 @@ void estadia_inicializar(sEstadiaDiaria estadias[], int tamEstadias){
 }
 
 
-void hardCode(sEstadiaDiaria estadias[], int tamEstadias){
+/*void hardCode(sEstadiaDiaria estadias[], int tamEstadias){
 	int i;
 	int ids[5] = {100000,100001,100002,100003,100004};
 	char nombres[5][31] = {"Jorge","Marta","Lionel","Tusa","Lommbe"};
@@ -128,6 +128,6 @@ void hardCode(sEstadiaDiaria estadias[], int tamEstadias){
 		estadias[i].fecha.anio = anios[i];
 		estadias[i].isEmpty = 0;
 	}
-}
+}*/
 
 

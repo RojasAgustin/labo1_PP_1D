@@ -19,7 +19,13 @@ int fecha_cargarMes(void){
 	return mes;
 }
 int fecha_cargarDia(void){
+	char diaCarga[2];
 	int dia;
-	dia = getInteger("Dia: ", "Error. Reingrese el año", 1, 31);
+	getString(diaCarga, "Dia: ", "Error. Reingrese el dia: ", 2);
+	while(!esNumerico(diaCarga, 2)){
+		printf("Error. Reingrese el dia.\n");
+		getString(diaCarga, "Dia: ", "Error. Reingrese el dia", 2);
+	}
+	dia = atoi(diaCarga);
 	return dia;
 }

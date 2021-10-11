@@ -7,13 +7,13 @@
 
 #include "estadia-perro.h"
 
-int estadiaPerro_subMenuModificar(sEstadiaDiaria estadias[],int tamEstadias,sPerro perros[], int tamPerros){
+int estadiaPerro_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamEstadias,sPerro perros[], int tamPerros){
 	int retorno = -1;
 	int index;
 	int idIngresado;
 	int opcion;
 	sEstadiaDiaria auxEstadia;
-	if(estadias != NULL && tamEstadias > -1){
+	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
 		estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
 		idIngresado = getInteger("Ingrese el ID de la estadia a modificar (100000-100100): ", "Reingrese el ID de la estadia a modificar (100000-100100): ", 100000, 100100);
 		index = estadia_buscarEstadiaPorId(estadias, tamEstadias, idIngresado);
@@ -94,7 +94,7 @@ int estadiaPerro_subMenuModificar(sEstadiaDiaria estadias[],int tamEstadias,sPer
 int estadiaPerro_mostrarEstadias (sEstadiaDiaria estadias[],int tamEstadias,sPerro perros[],int tamPerros){
 	int retorno =-1;
 	int i;
-	if(estadias != NULL && tamEstadias > -1){
+	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
 		printf("%-10s %-20s %-20s %-15s %-30s\n", "ID", "Dueño", "Telefono","Mascota","Fecha");
 		for(i=0;i<tamEstadias;i++){
 			if(estadias[i].isEmpty == 0){
@@ -106,9 +106,9 @@ int estadiaPerro_mostrarEstadias (sEstadiaDiaria estadias[],int tamEstadias,sPer
 	return retorno;
 }
 
-void estadiaPerro_mostrarEstadia (sEstadiaDiaria estadia,sPerro perros[],int tam){
+void estadiaPerro_mostrarEstadia (sEstadiaDiaria estadia,sPerro perros[],int tamPerros){
 	char auxNombre[TAMDUENIO];
-	perro_copiarNombre(perros, tam, estadia.idPerro, auxNombre);
+	perro_copiarNombre(perros, tamPerros, estadia.idPerro, auxNombre);
 	printf("%-10d %-20s %-20s %-15s %-1d/%-1d/%-1d\n",estadia.id,estadia.nombreDuenio,
 										 estadia.telefonoContacto,auxNombre,
 										 estadia.fecha.dia,estadia.fecha.mes,estadia.fecha.anio);
@@ -116,7 +116,7 @@ void estadiaPerro_mostrarEstadia (sEstadiaDiaria estadia,sPerro perros[],int tam
 int estadiaPerro_cancelarEstadia(sEstadiaDiaria estadias[], int tamEstadias, int id,sPerro perros[],int tamPerros){
 	int retorno =-1;;
 	int index;
-	if(estadias != NULL && tamEstadias > -1){
+	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
 		index = estadia_buscarEstadiaPorId(estadias, tamEstadias, id);
 		if(index != -1){
 			printf("\nEstadia a eliminar:\n"
@@ -170,13 +170,13 @@ int estadiaPerro_cargarEstadia(sEstadiaDiaria estadias[],int index, int id,sPerr
 	}
 	return retorno;
 }
-int estadiaPerro_reservarEstadia(sEstadiaDiaria estadias[],int tamEstadias, int ultimoID,sPerro perros[],int tamPerros){
+int estadiaPerro_reservarEstadia(sEstadiaDiaria estadias[],int tamEstadias, int id,sPerro perros[],int tamPerros){
 	int retorno =-1;
 	int index;
-	if(estadias != NULL && tamEstadias > -1){
+	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
 		index = estadia_buscarEspacioLibre(estadias, tamEstadias);
 		if(index !=-1){
-			if(!estadiaPerro_cargarEstadia(estadias, index, ultimoID,perros,tamPerros)){
+			if(!estadiaPerro_cargarEstadia(estadias, index, id,perros,tamPerros)){
 				printf("Se cargo la reserva exitosamente.\n");
 				retorno =0;
 			}
@@ -190,10 +190,10 @@ int estadiaPerro_reservarEstadia(sEstadiaDiaria estadias[],int tamEstadias, int 
 int estadiaPerro_operarMenuPrincipal(sEstadiaDiaria estadias[], int tamEstadias,sPerro perros[],int tamPerros){
 	int retorno =-1;
 	int opcionElegida;
-	int ultimoID = 100005;
-	int cantidadDeReservas =2;
+	int ultimoID = 100000;
+	int cantidadDeReservas =0;
 	int idCancelacion;
-	if(estadias != NULL && tamEstadias > -1){
+	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
 	do{
 			opcionElegida = getInteger("------------------------\n"
 									   "1-Reservar Estadia\n"
@@ -219,7 +219,7 @@ int estadiaPerro_operarMenuPrincipal(sEstadiaDiaria estadias[], int tamEstadias,
 				break;
 			case 2:
 				if(cantidadDeReservas > 0){
-					estadiaPerro_subMenuModificar(estadias, tamEstadias, perros, tamPerros);
+					estadiaPerro_operarSubMenuModificar(estadias, tamEstadias, perros, tamPerros);
 				}
 				else {
 					printf("Aun no se ha hecho ninguna reserva.\n");
