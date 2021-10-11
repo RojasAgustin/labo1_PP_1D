@@ -10,6 +10,7 @@
 #include "perros.h"
 #include "estadiaDiaria.h"
 #include "funciones.h"
+#include "fecha.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,6 +20,7 @@ void estadiaPerro_mostrarEstadia (sEstadiaDiaria estadia,sPerro perros[],int tam
 int estadiaPerro_cancelarEstadia(sEstadiaDiaria estadias[], int tamEstadias, int id,sPerro perros[],int tamPerros);
 int estadiaPerro_reservarEstadia(sEstadiaDiaria estadias[],int tamEstadias, int ultimoID,sPerro perros[],int tamPerros);
 int estadiaPerro_cargarEstadia(sEstadiaDiaria estadias[],int index, int id,sPerro perros[],int tamPerros);
+int estadiaPerro_operarMenuPrincipal(sEstadiaDiaria estadias[], int tamEstadias,sPerro perros[],int tamPerros);
 
 
 #endif /* ESTADIA_PERRO_H_ */

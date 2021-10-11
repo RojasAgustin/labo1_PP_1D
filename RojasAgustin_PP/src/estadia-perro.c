@@ -154,13 +154,12 @@ int estadiaPerro_cargarEstadia(sEstadiaDiaria estadias[],int index, int id,sPerr
 		getString(estadias[index].telefonoContacto, "Reingrese el telefono del dueño: ", "Error. Reingresar telefono (max 10 digitos): ",10);
 	}
 
-	//estadias[index].idPerro = getInteger("Ingrese el ID del perro: ", "Error. Reingrese id.", 7000, 7002);
 	aux = perro_elegirPerro();
 	estadias[index].idPerro = aux;
 	printf("Ingrese la fecha de la reserva: \n");
-	estadias[index].fecha.anio = getInteger("Año: ", "Error. Reingrese el año", 2021, 2023);
-	estadias[index].fecha.mes = getInteger("Mes: ", "Error. Reingrese el mes", 1, 12);
-	estadias[index].fecha.dia = getInteger("Dia: ", "Error. Reingrese el año", 1, 31);
+	estadias[index].fecha.anio = fecha_cargarAnio();
+	estadias[index].fecha.mes = fecha_cargarMes();
+	estadias[index].fecha.dia = fecha_cargarDia();
 	printf("\nEstadia a reservar:\n"
 						"%-10s %-20s %-20s %-15s %-30s\n", "ID", "Dueño", "Telefono","Mascota","Fecha");
 	estadiaPerro_mostrarEstadia(estadias[index],perros,tamPerros);
@@ -185,6 +184,102 @@ int estadiaPerro_reservarEstadia(sEstadiaDiaria estadias[],int tamEstadias, int 
 				printf("Se cancelo la reserva.\n");
 			}
 		}
+	}
+	return retorno;
+}
+int estadiaPerro_operarMenuPrincipal(sEstadiaDiaria estadias[], int tamEstadias,sPerro perros[],int tamPerros){
+	int retorno =-1;
+	int opcionElegida;
+	int ultimoID = 100005;
+	int cantidadDeReservas =2;
+	int idCancelacion;
+	if(estadias != NULL && tamEstadias > -1){
+	do{
+			opcionElegida = getInteger("------------------------\n"
+									   "1-Reservar Estadia\n"
+									   "2-Modificar Estadia\n"
+									   "3-Cancelar Estadia\n"
+									   "4-Listar Estadias\n"
+									   "5-Listar Perros\n"
+									   "6-Promedio de edad de los perros\n"
+									   "7-Salir\n"
+									   "Elija una opcion: ", "Error. Ingrese una opcion entre 1 y 7", 1, 7);
+			switch(opcionElegida){
+			case 1:
+				if(cantidadDeReservas < tamEstadias){
+					if(!estadiaPerro_reservarEstadia(estadias, tamEstadias, ultimoID,perros,tamPerros)){
+						ultimoID++;
+						cantidadDeReservas++;
+					}
+					system("pause");
+				}
+				else{
+					printf("No hay mas espacio disponible\n");
+				}
+				break;
+			case 2:
+				if(cantidadDeReservas > 0){
+					estadiaPerro_subMenuModificar(estadias, tamEstadias, perros, tamPerros);
+				}
+				else {
+					printf("Aun no se ha hecho ninguna reserva.\n");
+				}
+
+				break;
+			case 3:
+				if(cantidadDeReservas > 0){
+					estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
+					idCancelacion = getInteger("Ingrese el ID de la estadia a cancelar: ", "Error. ID no valido. Reintentar", 100000, 100100);
+					if(!estadiaPerro_cancelarEstadia(estadias, tamEstadias, idCancelacion,perros,tamPerros)){
+						cantidadDeReservas--;
+					}
+					system("pause");
+				}
+				else{
+					printf("Aun no se ha hecho ninguna reserva.\n");
+				}
+
+				break;
+			case 4:
+				if(cantidadDeReservas > 0){
+					estadia_ordenarListadoEstadias(estadias, tamEstadias);
+					printf("Mostrando lista: \n");
+					estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
+				}
+				else {
+					printf("Aun no se ha hecho ninguna reserva.\n");
+				}
+				break;
+			case 5:
+				if(cantidadDeReservas > 0){
+					perro_mostrarPerros(perros, tamPerros);
+					system("pause");
+				}
+				else{
+					printf("Aun no se ha hecho ninguna reserva.\n");
+				}
+				break;
+			case 6:
+				if(cantidadDeReservas > 0){
+					perro_calcularPromedioDeEdadDeLosPerros(perros, tamPerros);
+					system("pause");
+				}
+				else{
+					printf("Aun no se ha hecho ninguna reserva.\n");
+				}
+				break;
+			case 7:
+				printf("Saliendo del programa.\n");
+				break;
+			default:
+				printf("Error en el ingreso de la opcion. Reingresar.\n");
+				break;
+			}
+		}while(opcionElegida != 7);
+		retorno =0;
+	}
+	else {
+		printf("Error con la lista. Longitud invalida o array vacio");
 	}
 	return retorno;
 }

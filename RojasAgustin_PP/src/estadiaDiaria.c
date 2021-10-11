@@ -22,22 +22,52 @@ int estadia_ordenarListadoEstadias(sEstadiaDiaria estadias[],int tamEstadias){
 		do{
 			flagSwap =0;
 			for(i=0;i<tamEstadias;i++){
-				if(estadias[i].idPerro != 0 && estadias[i+1].idPerro != 0
-						&& estadias[i].fecha.anio > estadias[i+1].fecha.anio){
+				if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && estadias[i].fecha.anio < estadias[i+1].fecha.anio){
 					auxEstadia = estadias[i];
 					estadias[i] = estadias[i+1];
 					estadias[i+1] = auxEstadia;
 					flagSwap = 1;
 				}
-				else if (estadias[i].idPerro != 0 && estadias[i+1].idPerro != 0 && estadias[i].fecha.anio == estadias[i+1].fecha.anio){
-						if(estadias[i].idPerro != 0 && estadias[i+1].idPerro != 0 && strcmp(estadias[i].nombreDuenio,estadias[i+1].nombreDuenio) == 1){
+				else {
+					if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && estadias[i].fecha.anio == estadias[i+1].fecha.anio)
+					{
+						if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && estadias[i].fecha.mes < estadias[i+1].fecha.mes)
+						{
 							auxEstadia = estadias[i];
 							estadias[i] = estadias[i+1];
 							estadias[i+1] = auxEstadia;
 							flagSwap = 1;
 						}
+						else
+						{
+							if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && estadias[i].fecha.anio == estadias[i+1].fecha.anio
+								&& estadias[i].fecha.mes == estadias[i+1].fecha.mes)
+							{
+								if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && estadias[i].fecha.dia < estadias[i+1].fecha.dia)
+								{
+									auxEstadia = estadias[i];
+									estadias[i] = estadias[i+1];
+									estadias[i+1] = auxEstadia;
+									flagSwap = 1;
+								}
+								else
+								{
+									if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && estadias[i].fecha.anio == estadias[i+1].fecha.anio
+										&& estadias[i].fecha.mes == estadias[i+1].fecha.mes && estadias[i].fecha.dia == estadias[i+1].fecha.dia)
+									{
+										if((estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1) && strcmp(estadias[i].nombreDuenio,estadias[i+1].nombreDuenio) == 1)
+										{
+											auxEstadia = estadias[i];
+											estadias[i] = estadias[i+1];
+											estadias[i+1] = auxEstadia;
+											flagSwap = 1;
+										}
+									}
+								}
+							}
+						}
 					}
-
+				}
 			}
 			nuevoLimite--;
 		}while(flagSwap);
@@ -85,9 +115,9 @@ void hardCode(sEstadiaDiaria estadias[], int tamEstadias){
 	char nombres[5][31] = {"Jorge","Marta","Lionel","Tusa","Lommbe"};
 	char teles[5][11] = {"1234537893","2234565943","1223156783","5446236420","7447274373"};
 	int idPerros[5] = {7000,7001,7002,7001,7000};
-	int dias[5] = {14,13,6,31,23};
-	int meses[5] = {2,5,12,9,10};
-	int anios[5] = {2021,2021,2021,2020,2021};
+	int dias[5] = {17,17,19,7,7};
+	int meses[5] = {12,12,5,1,1};
+	int anios[5] = {2023,2023,2021,2022,2022};
 	for(i =0; i< tamEstadias;i++){
 		estadias[i].id = ids[i];
 		strcpy(estadias[i].nombreDuenio,nombres[i]);
