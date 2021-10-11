@@ -21,8 +21,8 @@ int main(void) {
 			{7002,"Reina","Galgo",13}
 	};
 	sEstadiaDiaria estadias[TAMESTADIAS];
-	hardCode(estadias, TAMESTADIAS);
-	//estadia_inicializar(estadias, TAMESTADIAS);
+	estadia_inicializar(estadias, TAMESTADIAS);
+	//hardCode(estadias, TAMESTADIAS);
 	estadiaPerro_operarMenuPrincipal(estadias, TAMESTADIAS,perros, TAMPERRROS);
 	return 0;
 }

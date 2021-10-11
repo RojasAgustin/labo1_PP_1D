@@ -14,7 +14,7 @@
 #include "fecha.h"
 #define TAMDUENIO 35
 #define TAMTELEFONO 10
-#define TAMESTADIAS 5
+#define TAMESTADIAS 10
 
 typedef struct{
 	int id;

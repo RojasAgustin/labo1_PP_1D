@@ -80,7 +80,7 @@ int estadia_buscarEstadiaPorId(sEstadiaDiaria estadias[], int tamEstadias, int i
 	int index = -1;
 	if(estadias != NULL && tamEstadias > -1) {
 		for(i=0; i<tamEstadias; i++){
-			if(estadias[i].idPerro != 0 && estadias[i].id == id){
+			if(estadias[i].isEmpty == 0 && estadias[i].id == id){
 				index = i;
 				break;
 			}
@@ -93,7 +93,7 @@ int estadia_buscarEspacioLibre(sEstadiaDiaria estadias[], int tamEstadias){
 	int index = -1;
 	if(estadias != NULL && tamEstadias > -1){
 		for(i=0; i<tamEstadias; i++){
-			if(estadias[i].isEmpty == 0){
+			if(estadias[i].isEmpty == 1){
 				index = i;
 				break;
 			}
