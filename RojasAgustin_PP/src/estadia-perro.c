@@ -14,6 +14,7 @@ int estadiaPerro_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamEstadia
 	int opcion;
 	sEstadiaDiaria auxEstadia;
 	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
+		estadia_ordenarListadoEstadias(estadias, tamEstadias);
 		estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
 		idIngresado = getInteger("Ingrese el ID de la estadia a modificar (100000-100100): ", "Reingrese el ID de la estadia a modificar (100000-100100): ", 100000, 100100);
 		index = estadia_buscarEstadiaPorId(estadias, tamEstadias, idIngresado);
@@ -69,7 +70,7 @@ int estadiaPerro_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamEstadia
 						estadiaPerro_mostrarEstadia(auxEstadia,perros,tamPerros);
 						if(!verificarConfirmacion("Modificar Perro? S para confirmar, N para cancelar: ")){
 							estadias[index].idPerro = auxEstadia.idPerro;
-							printf("Estadia reservada con exito para %s.\n",estadias[index].nombreDuenio);
+							printf("Estadia modificada con exito para %s.\n",estadias[index].nombreDuenio);
 						}
 						else{
 							printf("Se cancelo la modificacion del perro.\n");
@@ -85,7 +86,8 @@ int estadiaPerro_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamEstadia
 			}while(opcion!=3);
 		}
 		else {
-			printf("Error, estadia no encontrada\n");
+			printf("Error. estadia no encontrada\n");
+			system("pause");
 		}
 		retorno =0;
 	}
@@ -228,6 +230,7 @@ int estadiaPerro_operarMenuPrincipal(sEstadiaDiaria estadias[], int tamEstadias,
 				break;
 			case 3:
 				if(cantidadDeReservas > 0){
+					estadia_ordenarListadoEstadias(estadias, tamEstadias);
 					estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
 					idCancelacion = getInteger("Ingrese el ID de la estadia a cancelar: ", "Error. ID no valido. Reintentar", 100000, 100100);
 					if(!estadiaPerro_cancelarEstadia(estadias, tamEstadias, idCancelacion,perros,tamPerros)){
