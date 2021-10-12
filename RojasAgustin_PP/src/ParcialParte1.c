@@ -22,7 +22,6 @@ int main(void) {
 	};
 	sEstadiaDiaria estadias[TAMESTADIAS];
 	estadia_inicializar(estadias, TAMESTADIAS);
-	//hardCode(estadias, TAMESTADIAS);
 	estadiaPerro_operarMenuPrincipal(estadias, TAMESTADIAS,perros, TAMPERRROS);
 	return 0;
 }

@@ -63,7 +63,6 @@ int estadia_buscarEspacioLibre(sEstadiaDiaria estadias[], int tamEstadias);
  * @param tamEstadias int - La longitud del array
  */
 void estadia_inicializar(sEstadiaDiaria estadias[], int tamEstadias);
-//void hardCode(sEstadiaDiaria estadias[], int tamEstadias);
 
 
 #endif /* ESTADIADIARIA_H_ */
