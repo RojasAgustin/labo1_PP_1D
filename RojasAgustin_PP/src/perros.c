@@ -49,7 +49,7 @@ int perro_elegirPerro(){
 						"1.Lobo\n"
 						"2.Sheila\n"
 						"3.Reina\n"
-						"Elija un perro: ", "Error.Reingresar.", 1, 3);
+						"Elija un perro: ", "Error.Reingresar (Lobo = 1 / Sheila = 2 / Reina = 3).", 1, 3);
 	switch(opcion){
 		case 1:
 			id = 7000;

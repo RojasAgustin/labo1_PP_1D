@@ -144,10 +144,10 @@ int estadiaPerro_cargarEstadia(sEstadiaDiaria estadias[],int index, int id,sPerr
 	int aux;
 	estadias[index].id = id;
 
-	getString(estadias[index].nombreDuenio, "Ingrese el nombre del dueño: ", "Error. Reingrese el nombre del dueño (max 20 caracteres)", TAMDUENIO);
+	getString(estadias[index].nombreDuenio, "Ingrese el nombre del dueño: ", "Error. Reingrese el nombre del dueño (max 20 caracteres): ", TAMDUENIO);
 	while(!esNombreValido(estadias[index].nombreDuenio, TAMDUENIO)){
 		printf("Error. Caracteres no validos en el ingreso del nombre. Reintentar\n");
-		getString(estadias[index].nombreDuenio, "Ingrese el nombre del dueño: ", "Error. Reingrese el nombre del dueño (max 20 caracteres)", TAMDUENIO);
+		getString(estadias[index].nombreDuenio, "Reingrese el nombre del dueño: ", "Error. Reingrese el nombre del dueño (max 20 caracteres): ", TAMDUENIO);
 	}
 
 	getString(estadias[index].telefonoContacto, "Ingrese el telefono del dueño: ", "Error. Reingresar telefono (max 10 digitos): ",TAMTELEFONO);
