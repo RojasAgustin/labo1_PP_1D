@@ -16,7 +16,7 @@ int estadiaPerro_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamEstadia
 	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
 		estadia_ordenarListadoEstadias(estadias, tamEstadias);
 		estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
-		idIngresado = getInteger("Ingrese el ID de la estadia a modificar (100000-100100): ", "Reingrese el ID de la estadia a modificar (100000-100100): ", 100000, 100100);
+		idIngresado = getInteger("Ingrese el ID de la estadia a modificar (100000-100099): ", "Reingrese el ID de la estadia a modificar (100000-100099): ", 100000, 100099);
 		index = estadia_buscarEstadiaPorId(estadias, tamEstadias, idIngresado);
 		if(index != -1) //Existe el producto?
 		{
@@ -196,91 +196,91 @@ int estadiaPerro_operarMenuPrincipal(sEstadiaDiaria estadias[], int tamEstadias,
 	int cantidadDeReservas =0;
 	int idCancelacion;
 	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
-	do{
-			opcionElegida = getInteger("------------------------\n"
-									   "1-Reservar Estadia\n"
-									   "2-Modificar Estadia\n"
-									   "3-Cancelar Estadia\n"
-									   "4-Listar Estadias\n"
-									   "5-Listar Perros\n"
-									   "6-Promedio de edad de los perros\n"
-									   "7-Salir\n"
-									   "Elija una opcion: ", "Error. Ingrese una opcion entre 1 y 7", 1, 7);
-			switch(opcionElegida){
-			case 1:
-				if(cantidadDeReservas < tamEstadias){
-					if(!estadiaPerro_reservarEstadia(estadias, tamEstadias, ultimoID,perros,tamPerros)){
-						ultimoID++;
-						cantidadDeReservas++;
+		do{
+				opcionElegida = getInteger("------------------------\n"
+										   "1-Reservar Estadia\n"
+										   "2-Modificar Estadia\n"
+										   "3-Cancelar Estadia\n"
+										   "4-Listar Estadias\n"
+										   "5-Listar Perros\n"
+										   "6-Promedio de edad de los perros\n"
+										   "7-Salir\n"
+										   "Elija una opcion: ", "Error. Ingrese una opcion entre 1 y 7", 1, 7);
+				switch(opcionElegida){
+				case 1:
+					if(cantidadDeReservas < tamEstadias){
+						if(!estadiaPerro_reservarEstadia(estadias, tamEstadias, ultimoID,perros,tamPerros)){
+							ultimoID++;
+							cantidadDeReservas++;
+						}
 					}
-				}
-				else{
-					printf("No hay mas espacio disponible\n");
-				}
-				system("pause");
-				break;
-			case 2:
-				if(cantidadDeReservas > 0){
-					estadiaPerro_operarSubMenuModificar(estadias, tamEstadias, perros, tamPerros);
-				}
-				else {
-					printf("Aun no se ha hecho ninguna reserva.\n");
+					else{
+						printf("No hay mas espacio disponible\n");
+					}
 					system("pause");
-				}
-				break;
-			case 3:
-				if(cantidadDeReservas > 0){
-					estadia_ordenarListadoEstadias(estadias, tamEstadias);
-					estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
-					idCancelacion = getInteger("Ingrese el ID de la estadia a cancelar: ", "Error. ID no valido. Reintentar", 100000, 100100);
-					if(!estadiaPerro_cancelarEstadia(estadias, tamEstadias, idCancelacion,perros,tamPerros)){
-						cantidadDeReservas--;
+					break;
+				case 2:
+					if(cantidadDeReservas > 0){
+						estadiaPerro_operarSubMenuModificar(estadias, tamEstadias, perros, tamPerros);
 					}
+					else {
+						printf("Aun no se ha hecho ninguna reserva.\n");
+						system("pause");
+					}
+					break;
+				case 3:
+					if(cantidadDeReservas > 0){
+						estadia_ordenarListadoEstadias(estadias, tamEstadias);
+						estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
+						idCancelacion = getInteger("Ingrese el ID de la estadia a cancelar: ", "Error. ID no valido. Reintentar (de 100000 a 100099)", 100000, 100099);
+						if(!estadiaPerro_cancelarEstadia(estadias, tamEstadias, idCancelacion,perros,tamPerros)){
+							cantidadDeReservas--;
+						}
+					}
+					else{
+						printf("Aun no se ha hecho ninguna reserva.\n");
+					}
+					system("pause");
+					break;
+				case 4:
+					if(cantidadDeReservas > 0){
+						estadia_ordenarListadoEstadias(estadias, tamEstadias);
+						printf("Mostrando lista: \n");
+						estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
+					}
+					else {
+						printf("Aun no se ha hecho ninguna reserva.\n");
+					}
+					system("pause");
+					break;
+				case 5:
+					if(cantidadDeReservas > 0){
+						perro_mostrarPerros(perros, tamPerros);
+					}
+					else{
+						printf("Aun no se ha hecho ninguna reserva.\n");
+					}
+					system("pause");
+					break;
+				case 6:
+					if(cantidadDeReservas > 0){
+						perro_calcularPromedioDeEdadDeLosPerros(perros, tamPerros);
+					}
+					else{
+						printf("Aun no se ha hecho ninguna reserva.\n");
+					}
+					system("pause");
+					break;
+				case 7:
+					printf("Saliendo del programa.\n");
+					break;
+				default:
+					printf("Error en el ingreso de la opcion. Reingresar.\n");
+					break;
 				}
-				else{
-					printf("Aun no se ha hecho ninguna reserva.\n");
-				}
-				system("pause");
-				break;
-			case 4:
-				if(cantidadDeReservas > 0){
-					estadia_ordenarListadoEstadias(estadias, tamEstadias);
-					printf("Mostrando lista: \n");
-					estadiaPerro_mostrarEstadias(estadias, tamEstadias,perros,tamPerros);
-				}
-				else {
-					printf("Aun no se ha hecho ninguna reserva.\n");
-				}
-				system("pause");
-				break;
-			case 5:
-				if(cantidadDeReservas > 0){
-					perro_mostrarPerros(perros, tamPerros);
-				}
-				else{
-					printf("Aun no se ha hecho ninguna reserva.\n");
-				}
-				system("pause");
-				break;
-			case 6:
-				if(cantidadDeReservas > 0){
-					perro_calcularPromedioDeEdadDeLosPerros(perros, tamPerros);
-				}
-				else{
-					printf("Aun no se ha hecho ninguna reserva.\n");
-				}
-				system("pause");
-				break;
-			case 7:
-				printf("Saliendo del programa.\n");
-				break;
-			default:
-				printf("Error en el ingreso de la opcion. Reingresar.\n");
-				break;
-			}
-		}while(opcionElegida != 7);
-		retorno =0;
-	}
+			}while(opcionElegida != 7);
+			retorno =0;
+		}
 	else {
 		printf("Error con la lista. Longitud invalida o array vacio");
 	}
