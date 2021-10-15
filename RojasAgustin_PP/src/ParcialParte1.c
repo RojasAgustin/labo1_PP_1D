@@ -20,6 +20,9 @@ Agregar los siguientes informes:
 #include "funciones.h"
 #include "duenio.h"
 #include "estadia-perro-duenio.h"
+#include "estadia-perro.h"
+#include "estadia-duenio.h"
+
 
 int main(void) {
 	setbuf(stdout,NULL);

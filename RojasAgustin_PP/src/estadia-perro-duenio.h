@@ -10,6 +10,8 @@
 #include "perros.h"
 #include "estadiaDiaria.h"
 #include "funciones.h"
+#include "estadia-duenio.h"
+#include "estadia-perro.h"
 #include "fecha.h"
 #include "duenio.h"
 #include <stdio.h>
@@ -104,8 +106,6 @@ void estadiaPerroDuenio_mostrarEstadia (sEstadiaDiaria estadia,sPerro perros[],i
  * @param tamEstadias int - La longitud del array
  * @return retorno int - -1 si hay un error (array vacio o longitud invalida). 0 si puede ingresar al primer if.
  */
-int estadiaDuenio_ordenarListadoEstadias(sEstadiaDiaria estadias[],int tamEstadias,sDuenio duenios[], int tamDuenios);
-int estadiaPerro_sacarPerroConMasEstadias(sEstadiaDiaria estadias[],int tamEstadias,sPerro perros[],int tamPerros);
 void estadiaPerroDuenio_listarPerrosConEstadias(sEstadiaDiaria estadias[],int tamEstadias,sPerro perros[],int tamPerros,sDuenio duenios[],int tamDuenios);
 
 
