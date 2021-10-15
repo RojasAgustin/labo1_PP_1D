@@ -97,15 +97,7 @@ int estadiaPerroDuenio_mostrarEstadias (sEstadiaDiaria estadias[],int tamEstadia
  * @param tamPerros int - La longitud del array de perros
  */
 void estadiaPerroDuenio_mostrarEstadia (sEstadiaDiaria estadia,sPerro perros[],int tamPerros,sDuenio duenios[],int tamDuenios);
-/**
- * @fn int estadia_ordenarListadoEstadias(sEstadiaDiaria[], int)
- * @brief Ordena el listado de estadias de la fecha mas reciente para abajo
- * 		  (si hay igualdad de fechas, se ordena por nombre alfabeticamente).
- *
- * @param estadias[] sEstadiaDiaria - El array de estadias
- * @param tamEstadias int - La longitud del array
- * @return retorno int - -1 si hay un error (array vacio o longitud invalida). 0 si puede ingresar al primer if.
- */
+
 void estadiaPerroDuenio_listarPerrosConEstadias(sEstadiaDiaria estadias[],int tamEstadias,sPerro perros[],int tamPerros,sDuenio duenios[],int tamDuenios);
 
 
