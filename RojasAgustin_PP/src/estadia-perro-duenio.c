@@ -12,7 +12,7 @@ int estadiaPerroDuenio_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamE
 	int index;
 	int idIngresado;
 	int idTelefono;
-	long int telNuevo;
+	int telNuevo;
 	int indexTelefono;
 	int opcion;
 	sEstadiaDiaria auxEstadia;
@@ -45,11 +45,11 @@ int estadiaPerroDuenio_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamE
 						printf("Estadia a modificar: \n"
 								"%-10s %-20s %-20s %-15s %-30s\n", "ID", "Dueño", "Telefono","Mascota","Fecha");
 						estadiaPerroDuenio_mostrarEstadia(estadias[index],perros,tamPerros,duenios,tamDuenios);
-						idTelefono = auxEstadia.idDuenio;
+						idTelefono = estadias[index].idDuenio;
 						indexTelefono = duenio_buscarDuenioPorId(duenios, tamDuenios, idTelefono);
 						telNuevo = getInteger("Telefono nuevo: ", "Error.Reingresar (8 a 10 digitos)", 10000000, 1000000000);
 						duenio_cambiarTelefono(&duenios[indexTelefono],telNuevo);
-						printf("Estadia modificada con exito!\n");
+						printf("Telefono modificada con exito!\n");
 						system("pause");
 						break;
 					case 2:
@@ -297,6 +297,10 @@ int estadiaDuenio_ordenarListadoEstadias(sEstadiaDiaria estadias[],int tamEstadi
 	int i;
 	int flagSwap;
 	int nuevoLimite;
+	int idNombreUno;
+	int idNombreDos;
+	char nombreUno[20];
+	char nombreDos[20];
 	sEstadiaDiaria auxEstadia;
 	nuevoLimite = tamEstadias-1;
 
@@ -333,6 +337,23 @@ int estadiaDuenio_ordenarListadoEstadias(sEstadiaDiaria estadias[],int tamEstadi
 									flagSwap = 1;
 								}
 							}
+							else {
+								if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && estadias[i].fecha.anio == estadias[i+1].fecha.anio
+								   && estadias[i].fecha.mes == estadias[i+1].fecha.mes && estadias[i].fecha.dia == estadias[i+1].fecha.dia){
+
+									idNombreUno = estadias[i].idDuenio;
+									idNombreDos = estadias[i+1].idDuenio;
+									duenio_copiarNombre(duenios, tamDuenios, idNombreUno, nombreUno);
+									duenio_copiarNombre(duenios, tamDuenios, idNombreDos, nombreDos);
+
+									if(estadias[i].isEmpty != 1 && estadias[i+1].isEmpty != 1 && strcmp(nombreUno,nombreDos) == 1){
+										auxEstadia = estadias[i];
+										estadias[i] = estadias[i+1];
+										estadias[i+1] = auxEstadia;
+										flagSwap = 1;
+									}
+								}
+							}
 						}
 					}
 				}
@@ -361,13 +382,13 @@ int estadiaPerro_sacarPerroConMasEstadias(sEstadiaDiaria estadias[],int tamEstad
 			}
 		}
 		if(contadorLobo > contadorSheila && contadorLobo > contadorReina){
-			printf("Lobo tiene mas estadias (%d).\n",contadorLobo);
+			printf("Lobo tiene mas estadias (%d) que Sheila (%d) y Reina (%d).\n",contadorLobo,contadorSheila,contadorReina);
 		}
 		else if (contadorSheila > contadorLobo && contadorSheila > contadorReina){
-			printf("Sheila tiene mas estadias (%d).\n", contadorSheila);
+			printf("Sheila tiene mas estadias (%d) que Lobo (%d) y Reina (%d).\n", contadorSheila,contadorLobo,contadorReina);
 		}
 		else if (contadorReina > contadorLobo && contadorReina > contadorSheila){
-			printf("Reina tiene mas estadias. (%d)\n",contadorReina);
+			printf("Reina tiene mas estadias. (%d) que Sheila (%d) y Lobo (%d)\n",contadorReina,contadorSheila,contadorLobo);
 		}
 		else {
 			printf("Hay una igualdad en la cantidad de estadias.\n");
