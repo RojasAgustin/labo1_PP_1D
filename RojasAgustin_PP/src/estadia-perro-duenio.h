@@ -98,6 +98,17 @@ int estadiaPerroDuenio_mostrarEstadias (sEstadiaDiaria estadias[],int tamEstadia
  */
 void estadiaPerroDuenio_mostrarEstadia (sEstadiaDiaria estadia,sPerro perros[],int tamPerros,sDuenio duenios[],int tamDuenios);
 
+/**
+ * @fn void estadiaPerroDuenio_listarPerrosConEstadias(sEstadiaDiaria[], int, sPerro[], int, sDuenio[], int)
+ * @brief Muestra las estadias que corresponden a cada perro
+ *
+ * @param estadias
+ * @param tamEstadias
+ * @param perros
+ * @param tamPerros
+ * @param duenios
+ * @param tamDuenios
+ */
 void estadiaPerroDuenio_listarPerrosConEstadias(sEstadiaDiaria estadias[],int tamEstadias,sPerro perros[],int tamPerros,sDuenio duenios[],int tamDuenios);
 
 
