@@ -29,11 +29,11 @@ int main(void) {
 			{7002,"Reina","Galgo",13}
 	};
 	sDuenio duenios[5] ={
-			{100,"Juan",1255924334},
-			{101,"Lucas",1544442233},
-			{102,"Rodrigo",1242442288},
-			{103,"Marcos",129441112},
-			{104,"Brian",1499338118},
+			{30000,"Juan",1255924334},
+			{30001,"Lucas",1544442233},
+			{30002,"Rodrigo",1242442288},
+			{30003,"Marcos",129441112},
+			{30004,"Brian",1499338118},
 	};
 	sEstadiaDiaria estadias[TAMESTADIAS];
 	estadia_inicializar(estadias, TAMESTADIAS);

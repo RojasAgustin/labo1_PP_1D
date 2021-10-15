@@ -49,7 +49,7 @@ int estadiaPerroDuenio_operarSubMenuModificar(sEstadiaDiaria estadias[],int tamE
 						indexTelefono = duenio_buscarDuenioPorId(duenios, tamDuenios, idTelefono);
 						telNuevo = getInteger("Telefono nuevo: ", "Error.Reingresar (8 a 10 digitos)", 10000000, 1000000000);
 						duenio_cambiarTelefono(&duenios[indexTelefono],telNuevo);
-						printf("Telefono modificada con exito!\n");
+						printf("Telefono modificado con exito!\n");
 						system("pause");
 						break;
 					case 2:
@@ -371,13 +371,13 @@ int estadiaPerro_sacarPerroConMasEstadias(sEstadiaDiaria estadias[],int tamEstad
 	int contadorReina = 0;
 	if((estadias != NULL && tamEstadias > -1)|| (perros != NULL && tamPerros > -1)){
 		for(int i = 0;i < tamEstadias; i++){
-			if(estadias[i].idPerro == 7000){
+			if(estadias[i].isEmpty == 0 && estadias[i].idPerro == 7000){
 				contadorLobo++;
 			}
-			else if (estadias[i].idPerro == 7001){
+			else if (estadias[i].isEmpty == 0 && estadias[i].idPerro == 7001){
 				contadorSheila++;
 			}
-			else if (estadias[i].idPerro == 7002){
+			else if (estadias[i].isEmpty == 0 && estadias[i].idPerro == 7002){
 				contadorReina++;
 			}
 		}

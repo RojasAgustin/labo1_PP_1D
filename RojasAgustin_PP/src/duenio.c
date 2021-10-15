@@ -19,19 +19,19 @@ int duenio_elegirDuenio(){
 						"Elija un duenio: ", "Error.Reingresar (Juan = 1 / Lucas = 2 / Rodrigo = 3/ Marcos = 4/ Brian = 5).", 1, 5);
 	switch(opcion){
 		case 1:
-			id = 100;
+			id = 30000;
 			break;
 		case 2:
-			id = 101;
+			id = 30001;
 			break;
 		case 3:
-			id = 102;
+			id = 30002;
 			break;
 		case 4:
-			id = 103;
+			id = 30003;
 			break;
 		case 5:
-			id = 104;
+			id = 30004;
 			break;
 	}
 	return id;
